@@ -1,11 +1,17 @@
 package main
 
 import (
-	"config/config"
+	"CashMachine/internal/config"
+	"CashMachine/internal/database"
 	"fmt"
 )
 
 func main() {
 	fmt.Println("main package")
-	config.MustLoad()
+
+	cfg := config.MustLoad()
+
+	db := database.ConnectDb(cfg)
+
+	fmt.Println(db)
 }
