@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+	"log/slog"
 	"os"
 	"strconv"
 
@@ -16,7 +17,7 @@ type Config struct {
 	DB_PASS string
 }
 
-func MustLoad() *Config {
+func MustLoad(logger *slog.Logger) *Config {
 	
 	err := godotenv.Load()
     if err != nil {
@@ -33,6 +34,8 @@ func MustLoad() *Config {
 	cfg.DB_NAME = os.Getenv("DB_NAME")
 	cfg.DB_USER = os.Getenv("DB_USER")
 	cfg.DB_PASS = os.Getenv("DB_PASS")
+
+	logger.Info("Config load successfully", "module", "config")
 
 	
 	return cfg
