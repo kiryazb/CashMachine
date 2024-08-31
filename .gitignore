@@ -1,2 +1,5 @@
 .env
-.ait.toml
+go.mod
+go.sum
+tmp
+.air.toml
